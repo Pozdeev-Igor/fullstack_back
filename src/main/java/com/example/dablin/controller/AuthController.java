@@ -3,6 +3,7 @@ package com.example.dablin.controller;
 import com.example.dablin.DTO.AuthCredentialsRequest;
 import com.example.dablin.domain.User;
 import com.example.dablin.utils.JwtUtil;
+import io.jsonwebtoken.ExpiredJwtException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -49,7 +50,11 @@ public class AuthController {
 
     @GetMapping("/validate")
     public ResponseEntity<?> validateToken(@RequestParam String token, @AuthenticationPrincipal User user) {
-        jwtUtil.validateToken(token, user);
-
+        try {
+            Boolean isValidToken = jwtUtil.validateToken(token, user);
+                return ResponseEntity.ok(isValidToken);
+        } catch (ExpiredJwtException exception) {
+            return ResponseEntity.ok(false);
+        }
     }
 }
