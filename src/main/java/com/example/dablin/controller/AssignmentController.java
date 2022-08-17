@@ -1,4 +1,5 @@
 package com.example.dablin.controller;
+import com.example.dablin.DTO.AssignmentResponseDTO;
 import com.example.dablin.domain.Assignment;
 import com.example.dablin.domain.User;
 import com.example.dablin.service.AssignmentService;
@@ -34,7 +35,9 @@ public class AssignmentController {
     public ResponseEntity<?> getAssignment (@AuthenticationPrincipal User user,
                                             @PathVariable Long assignmentId) {
         Optional<Assignment> assignmentOpt = assignmentService.findById(assignmentId);
-        return  ResponseEntity.ok(assignmentOpt.orElse(new Assignment()));
+
+        AssignmentResponseDTO response = new AssignmentResponseDTO(assignmentOpt.orElse(new Assignment()));
+        return  ResponseEntity.ok(response);
     }
 
     @PutMapping("{assignmentId}")
