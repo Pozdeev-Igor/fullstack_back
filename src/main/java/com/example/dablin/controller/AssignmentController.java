@@ -1,4 +1,5 @@
 package com.example.dablin.controller;
+
 import com.example.dablin.DTO.AssignmentResponseDTO;
 import com.example.dablin.domain.Assignment;
 import com.example.dablin.domain.User;
@@ -26,24 +27,26 @@ public class AssignmentController {
     }
 
     @GetMapping("")
-    public ResponseEntity<?> getAssignments (@AuthenticationPrincipal User user) {
+    public ResponseEntity<?> getAssignments(@AuthenticationPrincipal User user) {
         Set<Assignment> assignmentByUser = assignmentService.findByUser(user);
-        return  ResponseEntity.ok(assignmentByUser);
+        return ResponseEntity.ok(assignmentByUser);
     }
 
     @GetMapping("{assignmentId}")
-    public ResponseEntity<?> getAssignment (@AuthenticationPrincipal User user,
-                                            @PathVariable Long assignmentId) {
+    public ResponseEntity<?> getAssignment(@AuthenticationPrincipal User user,
+                                           @PathVariable Long assignmentId) {
         Optional<Assignment> assignmentOpt = assignmentService.findById(assignmentId);
 
-        AssignmentResponseDTO response = new AssignmentResponseDTO(assignmentOpt.orElse(new Assignment()));
-        return  ResponseEntity.ok(response);
+        AssignmentResponseDTO response = new
+                AssignmentResponseDTO(assignmentOpt.orElse(
+                new Assignment()));
+        return ResponseEntity.ok(response);
     }
 
     @PutMapping("{assignmentId}")
-    public ResponseEntity<?> updateAssignment (@AuthenticationPrincipal User user,
-                                               @RequestBody Assignment assignment,
-                                               @PathVariable Long assignmentId) {
+    public ResponseEntity<?> updateAssignment(@AuthenticationPrincipal User user,
+                                              @RequestBody Assignment assignment,
+                                              @PathVariable Long assignmentId) {
         Assignment updatedAssignment = assignmentService.save(assignment);
         return ResponseEntity.ok(updatedAssignment);
     }

@@ -1,16 +1,14 @@
 package com.example.dablin.DTO;
 
 import com.example.dablin.Enums.AssignmentEnum;
+import com.example.dablin.Enums.AssignmentStatusEnum;
 import com.example.dablin.domain.Assignment;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 public class AssignmentResponseDTO {
 
     private Assignment assignment;
     private AssignmentEnum[] assignmentEnums = AssignmentEnum.values();
+    private AssignmentStatusEnum[] statusEnum = AssignmentStatusEnum.values();
 
     public AssignmentResponseDTO(Assignment assignment) {
         super();
@@ -27,5 +25,9 @@ public class AssignmentResponseDTO {
 
     public AssignmentEnum[] getAssignmentEnums() {
         return assignmentEnums;
+    }
+
+    public AssignmentStatusEnum[] getStatusEnum() {
+        return statusEnum;
     }
 }

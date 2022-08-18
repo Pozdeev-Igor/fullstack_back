@@ -1,5 +1,6 @@
 package com.example.dablin.service;
 
+import com.example.dablin.Enums.AssignmentStatusEnum;
 import com.example.dablin.domain.Assignment;
 import com.example.dablin.domain.User;
 import com.example.dablin.repos.AssignmentRepo;
@@ -16,7 +17,7 @@ public class AssignmentService {
     AssignmentRepo assignmentRepo;
     public Assignment save(User user) {
         Assignment assignment = new Assignment();
-        assignment.setStatus("Needs to be submitted");
+        assignment.setStatus(AssignmentStatusEnum.PENDING_SUBMISSION.getStatus());
         assignment.setUser(user);
         return assignmentRepo.save(assignment);
     }

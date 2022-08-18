@@ -16,7 +16,6 @@ public class Assignment {
     private String codeReviewVideoUrl;
     @ManyToOne(optional = false)
     private User user;
-
     private Integer number;
     //TODO: create later private User assignedTo;
 
