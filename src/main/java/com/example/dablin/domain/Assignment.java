@@ -16,6 +16,8 @@ public class Assignment {
     private String codeReviewVideoUrl;
     @ManyToOne(optional = false)
     private User user;
+    @ManyToOne
+    private User codeReviewer;
     private Integer number;
     //TODO: create later private User assignedTo;
 
@@ -74,5 +76,13 @@ public class Assignment {
 
     public void setNumber(Integer number) {
         this.number = number;
+    }
+
+    public User getCodeReviewer() {
+        return codeReviewer;
+    }
+
+    public void setCodeReviewer(User codeReviewer) {
+        this.codeReviewer = codeReviewer;
     }
 }

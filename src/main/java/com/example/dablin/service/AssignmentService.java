@@ -1,6 +1,7 @@
 package com.example.dablin.service;
 
 import com.example.dablin.Enums.AssignmentStatusEnum;
+import com.example.dablin.Enums.AuthorityEnum;
 import com.example.dablin.domain.Assignment;
 import com.example.dablin.domain.User;
 import com.example.dablin.repos.AssignmentRepo;
@@ -50,7 +51,18 @@ public class AssignmentService {
     }
 
     public Set<Assignment> findByUser(User user) {
-        return assignmentRepo.findByUser(user);
+
+        boolean hasCodeReviewerRole = user.getAuthorities()
+                .stream()
+                .filter(auth -> AuthorityEnum.ROLE_CODE_REVIEWER.name().equals(auth.getAuthority()))
+                .count() > 0;
+        if (hasCodeReviewerRole) {
+            // load assignments if you're a code reviewer role
+            return assignmentRepo.findByCodeReviewer(user);
+        } else {
+            // load assignments if you're a student role
+            return assignmentRepo.findByUser(user);
+        }
     }
 
     public Optional<Assignment> findById(Long assignmentId) {
