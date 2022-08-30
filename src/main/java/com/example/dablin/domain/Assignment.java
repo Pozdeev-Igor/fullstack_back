@@ -19,8 +19,6 @@ public class Assignment {
     @ManyToOne
     private User codeReviewer;
     private Integer number;
-    //TODO: create later private User assignedTo;
-
 
     public Long getId() {
         return id;
