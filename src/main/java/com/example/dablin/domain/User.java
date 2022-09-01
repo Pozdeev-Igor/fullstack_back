@@ -25,6 +25,7 @@ public class User implements UserDetails {
     @JsonIgnore
     private List<Authority> authorities = new ArrayList<>();
     private String email;
+    private String name;
 
     public LocalDate getCohortStartDate() {
         return cohortStartDate;
@@ -93,5 +94,13 @@ public class User implements UserDetails {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }
