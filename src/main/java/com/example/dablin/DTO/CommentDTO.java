@@ -3,6 +3,8 @@ package com.example.dablin.DTO;
 import com.example.dablin.domain.User;
 
 public class CommentDTO {
+
+    private Long id;
     private Long assignmentId;
     private String text;
     private String user;
@@ -29,6 +31,14 @@ public class CommentDTO {
 
     public void setUser(String user) {
         this.user = user;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     @Override
