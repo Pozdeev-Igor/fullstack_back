@@ -2,12 +2,15 @@ package com.example.dablin.DTO;
 
 import com.example.dablin.domain.User;
 
+import java.time.ZonedDateTime;
+
 public class CommentDTO {
 
     private Long id;
     private Long assignmentId;
     private String text;
     private String user;
+    private ZonedDateTime createdDate;
 
     public Long getAssignmentId() {
         return assignmentId;
@@ -41,12 +44,22 @@ public class CommentDTO {
         this.id = id;
     }
 
+    public ZonedDateTime getCreatedDate() {
+        return createdDate;
+    }
+
+    public void setCreatedDate(ZonedDateTime createdDate) {
+        this.createdDate = createdDate;
+    }
+
     @Override
     public String toString() {
         return "CommentDTO{" +
-                "assignmentId=" + assignmentId +
+                "id=" + id +
+                ", assignmentId=" + assignmentId +
                 ", text='" + text + '\'' +
                 ", user='" + user + '\'' +
+                ", createdDate=" + createdDate +
                 '}';
     }
 }

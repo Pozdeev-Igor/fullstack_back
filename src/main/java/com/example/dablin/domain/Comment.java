@@ -3,7 +3,7 @@ package com.example.dablin.domain;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 
 @Entity
 @Table(name = "cmmnts")
@@ -17,16 +17,16 @@ public class Comment {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User createdBy;
-    private LocalDateTime createdDate;
+    private ZonedDateTime createdDate;
     @Column(length = 5000)
     private String text;
 
 
-    public LocalDateTime getCreatedDate() {
+    public ZonedDateTime getCreatedDate() {
         return createdDate;
     }
 
-    public void setCreatedDate(LocalDateTime createdDate) {
+    public void setCreatedDate(ZonedDateTime createdDate) {
         this.createdDate = createdDate;
     }
 
